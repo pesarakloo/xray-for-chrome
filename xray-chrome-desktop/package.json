@@ -1,0 +1,10 @@
+{
+  "name": "xray-for-chrome-desktop",
+  "version": "0.3.9",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check extension/service-worker.js && node --check extension/popup/popup.js && node --check extension/modules/parser.js && node --check extension/modules/xray-config.js && node --check extension/modules/latency.js && node --check extension/modules/storage.js"
+  }
+}
