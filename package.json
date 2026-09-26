@@ -1,0 +1,11 @@
+{
+  "name": "xray-for-chrome-desktop",
+  "version": "0.4.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check extension/service-worker.js && node --check extension/popup/popup.js && node --check extension/modules/parser.js && node --check extension/modules/xray-config.js && node --check extension/modules/latency.js && node --check extension/modules/storage.js && node --check extension/modules/native.js && node --check extension/popup/guide.js && node --check native-hosts/macos/TcpTargets.js",
+    "test:mac-helper": "python3 tests/helpers/mac-tcp-harness.py"
+  }
+}
