@@ -2,17 +2,10 @@
 
 **Manage Xray connections in Google Chrome with a Persian/English interface, for Windows and macOS**
 
-Extension and package version: **0.7.3** — Neon Blue interface
 
 [Download releases](https://github.com/pesarakloo/xray-for-chrome/releases) · [Report an issue](https://github.com/pesarakloo/xray-for-chrome/issues) · [AniSoft website](https://anisoft.ir) · [Telegram channel](https://t.me/xray_chrome)
 
-## New look in version 0.7.3
 
-All five tabs have been redesigned based on reference screens: a navy background, blue glow, 3D shield, globe, config cards, and the local Vazirmatn font. The Persian/English interface, RTL/LTR direction, and Chrome window sizing are preserved.
-
-![New interface preview](docs/screenshots/ui-overview.jpg)
-
-This package is the **full GitHub build**; a new Chrome Web Store package is not yet ready at this stage. The companion app files are the same compatible 0.7.0 version, and this redesign does not require reinstalling them.
 
 ## Introduction
 
