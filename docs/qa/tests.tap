@@ -1,0 +1,334 @@
+TAP version 13
+# Subtest: builds VLESS vnext/users outbound
+ok 1 - builds VLESS vnext/users outbound
+  ---
+  duration_ms: 21.819483
+  type: 'test'
+  ...
+# Subtest: builds REALITY settings with the current password field
+ok 2 - builds REALITY settings with the current password field
+  ---
+  duration_ms: 1.120132
+  type: 'test'
+  ...
+# Subtest: builds VMess and Shadowsocks nested settings and retains existing Trojan settings
+ok 3 - builds VMess and Shadowsocks nested settings and retains existing Trojan settings
+  ---
+  duration_ms: 15.732472
+  type: 'test'
+  ...
+# Subtest: preserves advanced XHTTP and TLS parameters
+ok 4 - preserves advanced XHTTP and TLS parameters
+  ---
+  duration_ms: 2.65078
+  type: 'test'
+  ...
+# Subtest: converts mKCP legacy seed and header into FinalMask
+ok 5 - converts mKCP legacy seed and header into FinalMask
+  ---
+  duration_ms: 1.444391
+  type: 'test'
+  ...
+# Subtest: builds RAW HTTP camouflage for compatible Shadowsocks links
+ok 6 - builds RAW HTTP camouflage for compatible Shadowsocks links
+  ---
+  duration_ms: 1.541349
+  type: 'test'
+  ...
+# Subtest: binds the local SOCKS inbound only to loopback
+ok 7 - binds the local SOCKS inbound only to loopback
+  ---
+  duration_ms: 10.381112
+  type: 'test'
+  ...
+# Subtest: refuses privileged and invalid local ports
+ok 8 - refuses privileged and invalid local ports
+  ---
+  duration_ms: 4.900716
+  type: 'test'
+  ...
+# Subtest: first-run Persian, English toggle, interpolation and error details
+ok 9 - first-run Persian, English toggle, interpolation and error details
+  ---
+  duration_ms: 7.507373
+  type: 'test'
+  ...
+# Subtest: every static translatable label and attribute has an English message
+ok 10 - every static translatable label and attribute has an English message
+  ---
+  duration_ms: 50.493156
+  type: 'test'
+  ...
+# Subtest: subscription grants cover the requested HTTPS host without credentials
+ok 11 - subscription grants cover the requested HTTPS host without credentials
+  ---
+  duration_ms: 9.099869
+  type: 'test'
+  ...
+# Subtest: release manifest keeps optional site access, local code and no Incognito
+ok 12 - release manifest keeps optional site access, local code and no Incognito
+  ---
+  duration_ms: 6.069698
+  type: 'test'
+  ...
+# Subtest: probe config preserves transport/auth and has no direct fallback or active inbound
+ok 13 - probe config preserves transport/auth and has no direct fallback or active inbound
+  ---
+  duration_ms: 29.754923
+  type: 'test'
+  ...
+# Subtest: all profiles get independent saved results; concurrency is bounded and active connection untouched
+ok 14 - all profiles get independent saved results; concurrency is bounded and active connection untouched
+  ---
+  duration_ms: 55.565813
+  type: 'test'
+  ...
+# Subtest: timeout/error results remain distinct and never become a zero-ms success
+ok 15 - timeout/error results remain distinct and never become a zero-ms success
+  ---
+  duration_ms: 14.343005
+  type: 'test'
+  ...
+# Subtest: fresh results skip auto-tests, manual refresh reruns, and changed configs invalidate cache
+ok 16 - fresh results skip auto-tests, manual refresh reruns, and changed configs invalidate cache
+  ---
+  duration_ms: 10.796577
+  type: 'test'
+  ...
+# Subtest: old companion requires upgrade; no network probes are attempted
+ok 17 - old companion requires upgrade; no network probes are attempted
+  ---
+  duration_ms: 6.068326
+  type: 'test'
+  ...
+# Subtest: deleting/changing profiles during a probe cannot resurrect or attach stale results
+ok 18 - deleting/changing profiles during a probe cannot resurrect or attach stale results
+  ---
+  duration_ms: 28.241544
+  type: 'test'
+  ...
+# Subtest: cancel finishes in-flight probes, clears the queue and permits a new run
+ok 19 - cancel finishes in-flight probes, clears the queue and permits a new run
+  ---
+  duration_ms: 17.999936
+  type: 'test'
+  ...
+# Subtest: overlapping start requests do not duplicate a batch
+ok 20 - overlapping start requests do not duplicate a batch
+  ---
+  duration_ms: 3.354428
+  type: 'test'
+  ...
+# Subtest: companion/invalid-response failures stop the queue instead of inventing per-server failures
+ok 21 - companion/invalid-response failures stop the queue instead of inventing per-server failures
+  ---
+  duration_ms: 4.919005
+  type: 'test'
+  ...
+# Subtest: latency storage preserves profile/connection data and discards mismatched cache
+ok 22 - latency storage preserves profile/connection data and discards mismatched cache
+  ---
+  duration_ms: 5.169967
+  type: 'test'
+  ...
+# Subtest: TCP cache cannot suppress or replace a new HTTPS test
+ok 23 - TCP cache cannot suppress or replace a new HTTPS test
+  ---
+  duration_ms: 1.117181
+  type: 'test'
+  ...
+# Subtest: cancel during handshake does not start any Xray probes
+ok 24 - cancel during handshake does not start any Xray probes
+  ---
+  duration_ms: 4.349088
+  type: 'test'
+  ...
+# Subtest: same endpoint with different credentials gets independent HTTPS probes
+ok 25 - same endpoint with different credentials gets independent HTTPS probes
+  ---
+  duration_ms: 1.48361
+  type: 'test'
+  ...
+# Subtest: macOS validator accepts safe IPv4, IPv6 and domain targets
+ok 26 - macOS validator accepts safe IPv4, IPv6 and domain targets
+  ---
+  duration_ms: 27.675834
+  type: 'test'
+  ...
+# Subtest: macOS validator rejects shell syntax, TSV injection and invalid ports
+ok 27 - macOS validator rejects shell syntax, TSV injection and invalid ports
+  ---
+  duration_ms: 61.775547
+  type: 'test'
+  ...
+# Subtest: macOS validator rejects duplicate ids, unsafe ids and invalid deadlines
+ok 28 - macOS validator rejects duplicate ids, unsafe ids and invalid deadlines
+  ---
+  duration_ms: 27.111256
+  type: 'test'
+  ...
+# Subtest: batch sends once, streams results, then disconnects on completion
+ok 29 - batch sends once, streams results, then disconnects on completion
+  ---
+  duration_ms: 13.729677
+  type: 'test'
+  ...
+# Subtest: abort closes the native port immediately and ignores late results
+ok 30 - abort closes the native port immediately and ignores late results
+  ---
+  duration_ms: 2.27688
+  type: 'test'
+  ...
+# Subtest: an already cancelled test does not open a native host
+ok 31 - an already cancelled test does not open a native host
+  ---
+  duration_ms: 1.910171
+  type: 'test'
+  ...
+# Subtest: native disconnection before done reports an error
+ok 32 - native disconnection before done reports an error
+  ---
+  duration_ms: 4.297408
+  type: 'test'
+  ...
+# Subtest: malformed and rejected native responses close the batch
+ok 33 - malformed and rejected native responses close the batch
+  ---
+  duration_ms: 3.612808
+  type: 'test'
+  ...
+# Subtest: result validation failure closes the port and rejects the batch
+ok 34 - result validation failure closes the port and rejects the batch
+  ---
+  duration_ms: 1.129131
+  type: 'test'
+  ...
+# Subtest: parses VLESS REALITY links
+ok 35 - parses VLESS REALITY links
+  ---
+  duration_ms: 21.259319
+  type: 'test'
+  ...
+# Subtest: parses VMess AEAD links
+ok 36 - parses VMess AEAD links
+  ---
+  duration_ms: 5.975298
+  type: 'test'
+  ...
+# Subtest: maps VMess gRPC legacy type and path fields
+ok 37 - maps VMess gRPC legacy type and path fields
+  ---
+  duration_ms: 2.937186
+  type: 'test'
+  ...
+# Subtest: rejects obsolete VMess alterId
+ok 38 - rejects obsolete VMess alterId
+  ---
+  duration_ms: 4.48172
+  type: 'test'
+  ...
+# Subtest: parses SIP002 and legacy Shadowsocks links
+ok 39 - parses SIP002 and legacy Shadowsocks links
+  ---
+  duration_ms: 12.315423
+  type: 'test'
+  ...
+# Subtest: converts the 3x-ui compatible Shadowsocks HTTP obfs plugin
+ok 40 - converts the 3x-ui compatible Shadowsocks HTTP obfs plugin
+  ---
+  duration_ms: 2.79461
+  type: 'test'
+  ...
+# Subtest: parses advanced XHTTP, TLS, and FinalMask parameters
+ok 41 - parses advanced XHTTP, TLS, and FinalMask parameters
+  ---
+  duration_ms: 6.651278
+  type: 'test'
+  ...
+# Subtest: Trojan defaults to TLS
+ok 42 - Trojan defaults to TLS
+  ---
+  duration_ms: 3.936684
+  type: 'test'
+  ...
+# Subtest: decodes base64 subscriptions and reports bad rows
+ok 43 - decodes base64 subscriptions and reports bad rows
+  ---
+  duration_ms: 8.388882
+  type: 'test'
+  ...
+# Subtest: accepts literal escaped newlines in subscriptions
+ok 44 - accepts literal escaped newlines in subscriptions
+  ---
+  duration_ms: 4.326177
+  type: 'test'
+  ...
+# Subtest: fingerprints equivalent profiles consistently
+ok 45 - fingerprints equivalent profiles consistently
+  ---
+  duration_ms: 12.780925
+  type: 'test'
+  ...
+# Subtest: fingerprints include transport-security variables
+ok 46 - fingerprints include transport-security variables
+  ---
+  duration_ms: 2.62885
+  type: 'test'
+  ...
+# Subtest: rejects REALITY on transports unsupported by current Xray
+ok 47 - rejects REALITY on transports unsupported by current Xray
+  ---
+  duration_ms: 3.291752
+  type: 'test'
+  ...
+# Subtest: manifest references existing local files and a stable extension id
+ok 48 - manifest references existing local files and a stable extension id
+  ---
+  duration_ms: 54.461039
+  type: 'test'
+  ...
+# Subtest: popup has no inline script or remote code
+ok 49 - popup has no inline script or remote code
+  ---
+  duration_ms: 5.034443
+  type: 'test'
+  ...
+# Subtest: native hosts are separated and use the same host name
+ok 50 - native hosts are separated and use the same host name
+  ---
+  duration_ms: 11.276897
+  type: 'test'
+  ...
+# Subtest: Windows PowerShell installers are safe for legacy code-page parsing
+ok 51 - Windows PowerShell installers are safe for legacy code-page parsing
+  ---
+  duration_ms: 29.031516
+  type: 'test'
+  ...
+# Subtest: macOS installer supports Apple Silicon and Intel assets
+ok 52 - macOS installer supports Apple Silicon and Intel assets
+  ---
+  duration_ms: 7.293843
+  type: 'test'
+  ...
+# Subtest: worker enforces host permission, HTTPS, bounded failures and no cookie forwarding
+ok 53 - worker enforces host permission, HTTPS, bounded failures and no cookie forwarding
+  ---
+  duration_ms: 42.894484
+  type: 'test'
+  ...
+# Subtest: storage hides TCP and untyped cached results after restoring HTTPS
+ok 54 - storage hides TCP and untyped cached results after restoring HTTPS
+  ---
+  duration_ms: 17.172661
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1608.53349
