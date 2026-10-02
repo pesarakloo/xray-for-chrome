@@ -4,7 +4,7 @@
 
 Extension and package version: **0.7.4** — neon-blue interface
 
-[Chrome Web Store](https://chromewebstore.google.com/detail/lifddnekhjaikimaajejkdbhfnifpcoo?utm_source=item-share-cb) · [Releases](https://github.com/pesarakloo/xray-for-chrome/releases) · [Report an issue](https://github.com/pesarakloo/xray-for-chrome/issues) · [Anisoft website](https://anisoft.ir) · [Telegram channel](https://t.me/xray_chrome) · [Persian](https://github.com/pesarakloo/xray-for-chrome/blob/main/README.fa.md)
+🛒 [Chrome Web Store](https://chromewebstore.google.com/detail/lifddnekhjaikimaajejkdbhfnifpcoo?utm_source=item-share-cb) · 🚀 [Releases](https://github.com/pesarakloo/xray-for-chrome/releases) · 🐞 [Report an issue](https://github.com/pesarakloo/xray-for-chrome/issues) · 🌐 [Anisoft website](https://anisoft.ir) · 📢 [Telegram channel](https://t.me/xray_chrome) · 🇮🇷 [Persian](https://github.com/pesarakloo/xray-for-chrome/blob/main/README.fa.md)
 
 ## What's new in 0.7.4
 
