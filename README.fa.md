@@ -1,11 +1,11 @@
 # Xray for Chrome
 
 **مدیریت اتصال Xray در Google Chrome با رابط فارسی و انگلیسی، برای Windows و macOS**
-
 نسخه افزونه و بسته: **0.7.4** — رابط نئون آبی
-[فروشگاه وب کروم](https://chromewebstore.google.com/detail/lifddnekhjaikimaajejkdbhfnifpcoo?utm_source=item-share-cb) · [دریافت نسخه‌ها](https://github.com/pesarakloo/xray-for-chrome/releases) · [گزارش مشکل](https://github.com/pesarakloo/xray-for-chrome/issues) · [وب‌سایت آنی‌سافت](https://anisoft.ir) · [کانال تلگرام](https://t.me/xray_chrome) · [English](https://github.com/pesarakloo/xray-for-chrome/blob/main/README.md)
-## ظاهر جدید در نسخه 0.7.4
 
+[فروشگاه وب کروم](https://chromewebstore.google.com/detail/lifddnekhjaikimaajejkdbhfnifpcoo?utm_source=item-share-cb) · [دریافت نسخه‌ها](https://github.com/pesarakloo/xray-for-chrome/releases) · [گزارش مشکل](https://github.com/pesarakloo/xray-for-chrome/issues) · [وب‌سایت آنی‌سافت](https://anisoft.ir) · [کانال تلگرام](https://t.me/xray_chrome) · [English](https://github.com/pesarakloo/xray-for-chrome/blob/main/README.md)
+
+## ظاهر جدید در نسخه 0.7.4
 بازطراحی هر پنج تب بر اساس اسکرین‌های مرجع: زمینه سرمه‌ای، نور آبی، سپر سه‌بعدی، کره زمین، کارت‌های کانفیگ و فونت محلی وزیرمتن. رابط فارسی و انگلیسی، جهت RTL/LTR و اندازه پنجره Chrome حفظ شده‌اند.
 
 ![پیش‌نمایش رابط جدید](docs/screenshots/ui-overview.jpg)
