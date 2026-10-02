@@ -1,6 +1,6 @@
 # Xray for Chrome
 
-**مدیریت اتصال Xray در Google Chrome با رابط فارسی و انگلیسی، برای Windows و macOS*
+**مدیریت اتصال Xray در Google Chrome با رابط فارسی و انگلیسی، برای Windows و macOS**
 
 نسخه افزونه و بسته: **0.7.4** — رابط نئون آبی
 
