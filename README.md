@@ -13,7 +13,7 @@ Extension and package version: **0.7.5** — neon-blue interface
 - macOS automatic Xray downloads pinned to **25.8.3** for Intel and Apple Silicon; rebuilt companion ZIPs.
 - Matching English and Persian instructions, updated privacy information and version labels.
 
-Two separate files are supplied: `xray-for-chrome-v0.7.5-github.zip` for the full project and `xray-for-chrome-v0.7.5-chrome-web-store.zip` for updating the existing store item. The store ZIP is not included in the GitHub ZIP. This prepared update has not been published by this workflow. The companion protocol remains **0.5.0**; existing companions can use the new browser-side routing feature. Rerun the updated Mac installer if you want its pinned 25.8.3 download.
+
 
 ## Overview
 
