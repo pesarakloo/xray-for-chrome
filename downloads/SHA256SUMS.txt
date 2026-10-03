@@ -1,0 +1,2 @@
+38260d8ba62062478488e514ff1265ebfda33d2488f22f67f3f59cf763e22922  xray-companion-windows.zip
+be8575b8e491b6299c19dac81d69b3dc0ad5f771755ee946d62ad8194a5aca43  xray-companion-macos.zip

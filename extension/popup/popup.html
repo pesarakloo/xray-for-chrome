@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Xray for Chrome</title>
+<link href="popup.css" rel="stylesheet"/>
+<link href="guide.css" rel="stylesheet"/>
+</head>
+<body>
+<main class="app-shell">
+<div class="app-header">
+<header class="topbar">
+<div class="brand">
+<span class="brand-mark">
+<img alt="" height="44" src="../assets/ui/brand.webp" width="44"/>
+</span>
+<div>
+<h1>Xray for Chrome</h1>
+<p>
+<span data-i18n="فقط ترافیک مرورگر">فقط ترافیک مرورگر</span>
+</p>
+</div>
+</div>
+<div class="header-actions">
+<button aria-label="Switch to English" class="language-button" id="languageButton" lang="en" type="button">English</button>
+<div class="status-pill offline" id="statusPill">
+<span class="status-dot">
+</span>
+<span id="statusText">
+<span data-i18n="قطع">قطع</span>
+</span>
+</div>
+</div>
+</header>
+<nav aria-label="بخش‌های افزونه" class="tabs" data-i18n-aria-label="بخش‌های افزونه">
+<button class="tab active" data-tab="connect">
+<span aria-hidden="true" class="ui-icon icon-bolt">
+</span>
+<span data-i18n="اتصال">اتصال</span>
+</button>
+<button class="tab" data-tab="import">
+<span aria-hidden="true" class="ui-icon icon-plus">
+</span>
+<span data-i18n="افزودن">افزودن</span>
+</button>
+<button class="tab" data-tab="manage">
+<span aria-hidden="true" class="ui-icon icon-list">
+</span>
+<span data-i18n="مدیریت">مدیریت</span>
+</button>
+<button class="tab" data-tab="routing">
+<span aria-hidden="true" class="ui-icon icon-world">
+</span>
+<span data-i18n="تفکیک ترافیک">تفکیک ترافیک</span>
+</button>
+<button class="tab" data-tab="guide">
+<span aria-hidden="true" class="ui-icon icon-book">
+</span>
+<span data-i18n="آموزش اتصال">آموزش اتصال</span>
+</button>
+<button class="tab" data-tab="about">
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span data-i18n="درباره ما">درباره ما</span>
+</button>
+</nav>
+</div>
+<section class="tab-panel active" id="tab-connect">
+<div class="hero-card">
+<div aria-hidden="true" class="shield">
+<img alt="" height="165" src="../assets/ui/shield.webp" width="220"/>
+</div>
+<h2 id="heroTitle">
+<span data-i18n="آماده اتصال">آماده اتصال</span>
+</h2>
+<p id="heroSubtitle">
+<span data-i18n="یک کانفیگ انتخاب کنید">یک کانفیگ انتخاب کنید</span>
+</p>
+<label class="field-label" for="profileSelect">
+<span data-i18n="انتخاب کانفیگ">انتخاب کانفیگ</span>
+</label>
+<select class="select" id="profileSelect">
+</select>
+<div class="selected-latency">
+<span>
+<span>
+<span data-i18n="پینگ">پینگ</span>
+</span> <span class="ping-badge" id="selectedPing">—</span>
+</span>
+<button class="text-button" id="pingSelectedButton" type="button">
+<span data-i18n="تست پینگ">تست پینگ</span>
+</button>
+</div>
+<p class="latency-note">
+<span data-i18n="زمان پاسخ اینترنت از مسیر همین کانفیگ">زمان پاسخ اینترنت از مسیر همین کانفیگ</span>
+</p>
+<button class="primary-button" id="connectButton">
+<span data-i18n="اتصال">اتصال</span>
+</button>
+<button class="primary-button hidden" id="emptyConnectButton" type="button">
+<span aria-hidden="true" class="ui-icon icon-plus">
+</span>
+<span data-i18n="افزودن اولین کانفیگ">افزودن اولین کانفیگ</span>
+</button>
+<p class="privacy-note">
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span data-i18n="WebRTC غیرپراکسی هنگام اتصال محدود می‌شود.">WebRTC غیرپراکسی هنگام اتصال محدود می‌شود.</span>
+</p>
+</div>
+<div class="info-row">
+<div>
+<span class="muted">
+<span data-i18n="موتور">موتور</span>
+</span>
+<strong id="engineStatus">
+<span data-i18n="در حال بررسی…">در حال بررسی…</span>
+</strong>
+</div>
+<div class="engine-actions">
+<button class="text-button hidden" id="engineHelpButton" type="button">
+<span data-i18n="راهنمای نصب">راهنمای نصب</span>
+</button>
+<button aria-controls="logsBox" aria-expanded="false" class="text-button" id="showLogsButton">
+<span data-i18n="گزارش خطا">گزارش خطا</span>
+</button>
+</div>
+</div>
+<pre class="logs hidden" id="logsBox">
+</pre>
+
+</section>
+<section class="tab-panel" id="tab-import">
+<div class="section-card">
+<div class="section-title">
+<span class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-plus">
+</span>
+</span>
+<div>
+<h2>
+<span data-i18n="افزودن کانفیگ">افزودن کانفیگ</span>
+</h2>
+<p>
+<span data-i18n="یک یا چند لینک، هر کدام در یک خط">یک یا چند لینک، هر کدام در یک خط</span>
+</p>
+</div>
+</div>
+<label class="field-label" for="manualLinks">
+<span data-i18n="لینک کانفیگ‌ها">لینک کانفیگ‌ها</span>
+</label>
+<textarea aria-label="لینک‌های کانفیگ، هر کدام در یک خط" data-i18n-aria-label="لینک‌های کانفیگ، هر کدام در یک خط" dir="ltr" id="manualLinks" placeholder="vless://...
+vmess://...
+ss://...
+trojan://..." rows="4">
+</textarea>
+<button class="secondary-button" id="importButton">
+<span aria-hidden="true" class="ui-icon icon-link">
+</span>
+<span data-i18n="افزودن لینک‌ها">افزودن لینک‌ها</span>
+</button>
+</div>
+<div class="section-card">
+<div class="section-title">
+<span class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-refresh">
+</span>
+</span>
+<div>
+<h2>
+<span data-i18n="افزودن سابسکریپشن">افزودن سابسکریپشن</span>
+</h2>
+<p>
+<span data-i18n="فهرست سرورها خودکار دریافت می‌شود">فهرست سرورها خودکار دریافت می‌شود</span>
+</p>
+</div>
+</div>
+<label class="field-label" for="subscriptionName">
+<span data-i18n="نام اشتراک">نام اشتراک</span> <span class="optional">
+<span data-i18n="(اختیاری)">(اختیاری)</span>
+</span>
+</label>
+<input aria-label="نام سابسکریپشن" data-i18n-aria-label="نام سابسکریپشن" data-i18n-placeholder="نام دلخواه" id="subscriptionName" maxlength="80" placeholder="نام دلخواه" type="text"/>
+<label class="field-label" for="subscriptionUrl">
+<span data-i18n="لینک سابسکریپشن">لینک سابسکریپشن</span>
+</label>
+<input aria-label="نشانی سابسکریپشن" data-i18n-aria-label="نشانی سابسکریپشن" dir="ltr" id="subscriptionUrl" placeholder="https://example.com/sub" type="url"/>
+<p class="input-hint" data-i18n="برای دریافت اشتراک، دسترسی به دامنه همین لینک را تأیید کنید.">برای دریافت اشتراک، دسترسی به دامنه همین لینک را تأیید کنید.</p>
+<button class="secondary-button" id="addSubscriptionButton">
+<span aria-hidden="true" class="ui-icon icon-download">
+</span>
+<span data-i18n="دریافت و افزودن">دریافت و افزودن</span>
+</button>
+</div>
+</section>
+<section class="tab-panel" id="tab-manage">
+<div class="section-card management-card">
+<div class="list-heading">
+<div class="heading-label">
+<h2 data-i18n="پروفایل‌های شما">پروفایل‌های شما</h2>
+<span class="counter" id="profileCount">۰</span>
+</div>
+<div class="heading-actions">
+<button class="text-button" data-i18n="تست همه" id="pingAllButton" type="button">تست همه</button>
+<button aria-label="افزودن کانفیگ" class="square-button" data-i18n-aria-label="افزودن کانفیگ" data-open-import="manualLinks" type="button">
+<span aria-hidden="true" class="ui-icon icon-plus">
+</span>
+</button>
+</div>
+</div>
+<p class="section-subtitle" data-i18n="مدیریت، تست و انتخاب کانفیگ‌ها">مدیریت، تست و انتخاب کانفیگ‌ها</p>
+<p aria-atomic="true" aria-live="polite" class="ping-progress hidden" id="pingProgress" role="status">
+</p>
+<div class="item-list empty-list" id="profileList">
+</div>
+</div>
+<div class="section-card management-card">
+<div class="list-heading">
+<div class="heading-label">
+<h2 data-i18n="سابسکریپشن‌ها">سابسکریپشن‌ها</h2>
+<span class="counter" id="subscriptionCount">۰</span>
+</div>
+<button aria-label="افزودن سابسکریپشن" class="square-button" data-i18n-aria-label="افزودن سابسکریپشن" data-open-import="subscriptionUrl" type="button">
+<span aria-hidden="true" class="ui-icon icon-link">
+</span>
+</button>
+</div>
+<div class="item-list empty-list" id="subscriptionList">
+</div>
+</div>
+</section>
+<section class="tab-panel" id="tab-routing">
+<form class="section-card traffic-card" id="routingForm">
+<div class="section-title">
+<span class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-world">
+</span>
+</span>
+<div>
+<h2  data-i18n="تفکیک ترافیک">تفکیک ترافیک</h2>
+<p  data-i18n="انتخاب سایت‌هایی که مستقیم باز می‌شوند">انتخاب سایت‌هایی که مستقیم باز می‌شوند</p>
+</div>
+</div>
+<label class="routing-toggle" for="routingEnabled">
+<input type="checkbox" id="routingEnabled"/>
+<span  data-i18n="سایت‌های زیر بدون VPN باز شوند">سایت‌های زیر بدون VPN باز شوند</span>
+</label>
+<label class="field-label" for="routingDomains" data-i18n="آدرس سایت‌ها، هر کدام در یک خط">آدرس سایت‌ها، هر کدام در یک خط</label>
+<textarea id="routingDomains" dir="ltr" rows="3" maxlength="60000" placeholder="example.com&#10;https://example.org" spellcheck="false" autocomplete="off" aria-describedby="routingHint">
+</textarea>
+<p id="routingHint" class="input-hint" data-i18n="دامنه و زیردامنه‌های آن مستقیم باز می‌شوند؛ مسیر و پورت لینک نادیده گرفته می‌شود. حداکثر ۲۰۰ سایت.">دامنه و زیردامنه‌های آن مستقیم باز می‌شوند؛ مسیر و پورت لینک نادیده گرفته می‌شود. حداکثر ۲۰۰ سایت.</p>
+<p class="input-hint" data-i18n="سایت‌های خارج از فهرست از اتصال انتخاب‌شده استفاده می‌کنند. منابع یک صفحه روی دامنه‌های دیگر فقط با افزودن آن دامنه‌ها مستقیم می‌شوند.">سایت‌های خارج از فهرست از اتصال انتخاب‌شده استفاده می‌کنند. منابع یک صفحه روی دامنه‌های دیگر فقط با افزودن آن دامنه‌ها مستقیم می‌شوند.</p>
+<button type="submit" id="saveRoutingButton" class="secondary-button">
+<span  data-i18n="ذخیره تنظیمات">ذخیره تنظیمات</span>
+</button>
+<p id="routingStatus" class="routing-status" role="status" aria-live="polite">
+</p>
+</form>
+</section>
+<section class="tab-panel guide-panel" id="tab-guide">
+<div class="section-card guide-intro">
+<div class="guide-hero">
+<div class="guide-intro-copy">
+<h2  data-i18n="راهنمای اتصال، قدم‌به‌قدم">راهنمای اتصال، قدم‌به‌قدم</h2>
+<p  data-i18n="اول روش نصب، سپس سیستم‌عامل خود را انتخاب کنید. فقط مراحل همان مسیر نمایش داده می‌شود.">اول روش نصب، سپس سیستم‌عامل خود را انتخاب کنید. فقط مراحل همان مسیر نمایش داده می‌شود.</p>
+</div>
+<img alt="" class="setup-art" src="../assets/ui/setup-laptop.webp" width="145" height="128"/>
+</div>
+<p class="guide-note" data-i18n="برای اتصال، برنامه مکمل و کانفیگ یا اشتراک معتبر لازم است. برنامه مکمل را یک‌بار روی دستگاه نصب کنید.">برای اتصال، برنامه مکمل و کانفیگ یا اشتراک معتبر لازم است. برنامه مکمل را یک‌بار روی دستگاه نصب کنید.</p>
+</div>
+<h2 class="guide-choice-title" data-i18n="روش نصب افزونه">روش نصب افزونه</h2>
+<div class="guide-methods" role="group">
+<button type="button" id="guide-store-button" data-guide-method="store" aria-controls="guide-method-store" aria-pressed="true">
+<span aria-hidden="true" class="ui-icon icon-world">
+</span>
+<strong>
+<span  data-i18n="نصب از کروم استور">نصب از کروم استور</span>
+</strong>
+<small>
+<span  data-i18n="افزونه از فروشگاه کروم">افزونه از فروشگاه کروم</span>
+</small>
+</button>
+<button type="button" id="guide-github-button" data-guide-method="github" aria-controls="guide-method-github" aria-pressed="false">
+<span aria-hidden="true" class="ui-icon icon-brand-github">
+</span>
+<strong>
+<span  data-i18n="نصب از گیت‌هاب">نصب از گیت‌هاب</span>
+</strong>
+<small>
+<span  data-i18n="بارگذاری دستی پوشه پروژه">بارگذاری دستی پوشه پروژه</span>
+</small>
+</button>
+</div>
+<div id="guide-method-store" class="guide-method-panel" role="region" aria-labelledby="guide-store-button">
+<h2 class="guide-choice-title" data-i18n="سیستم‌عامل شما">سیستم‌عامل شما</h2>
+<div class="guide-platforms" role="group">
+<button type="button" data-guide-platform="windows" id="guide-store-windows-button" aria-controls="guide-store-windows" aria-pressed="true">
+<span aria-hidden="true" class="ui-icon icon-brand-windows">
+</span>
+<span  data-i18n="ویندوز">ویندوز</span>
+</button>
+<button type="button" data-guide-platform="macos" id="guide-store-macos-button" aria-controls="guide-store-macos" aria-pressed="false">
+<span aria-hidden="true" class="ui-icon icon-brand-apple">
+</span>
+<span  data-i18n="مک">مک</span>
+</button>
+</div>
+<div class="guide-platform-panel section-card" id="guide-store-windows" role="region" aria-labelledby="guide-store-windows-button">
+<p class="guide-requirements" data-i18n="Windows 10 یا 11 · Chrome 116 به بالا · PowerShell 5.1 و ‎.NET Framework 4.8">Windows 10 یا 11 · Chrome 116 به بالا · PowerShell 5.1 و ‎.NET Framework 4.8</p>
+<ol class="guide-steps">
+<li>
+<h3  data-i18n="افزونه را از استور نصب کنید">افزونه را از استور نصب کنید</h3>
+<p  data-i18n="در صفحه افزونه روی Add to Chrome و سپس Add extension بزنید. افزونه را باز کنید و به همین بخش آموزش برگردید. اگر نصب کرده‌اید، به مرحله بعد بروید.">در صفحه افزونه روی Add to Chrome و سپس Add extension بزنید. افزونه را باز کنید و به همین بخش آموزش برگردید. اگر نصب کرده‌اید، به مرحله بعد بروید.</p>
+<a class="guide-link" href="https://chromewebstore.google.com/detail/lifddnekhjaikimaajejkdbhfnifpcoo" target="_blank" rel="noopener noreferrer" data-i18n="بازکردن صفحه کروم استور">بازکردن صفحه کروم استور</a>
+</li>
+<li>
+<h3  data-i18n="برنامه مکمل را دانلود و استخراج کنید">برنامه مکمل را دانلود و استخراج کنید</h3>
+<a class="guide-link" href="https://github.com/pesarakloo/xray-for-chrome/raw/main/downloads/xray-companion-windows.zip" target="_blank" rel="noopener noreferrer" data-i18n="دانلود برنامه مکمل ویندوز">دانلود برنامه مکمل ویندوز</a>
+<p  data-i18n="فایل ZIP را کامل استخراج کنید. پوشه‌ای را باز کنید که install-windows.cmd داخل آن است.">فایل ZIP را کامل استخراج کنید. پوشه‌ای را باز کنید که install-windows.cmd داخل آن است.</p>
+</li>
+<li>
+<h3  data-i18n="برنامه مکمل را نصب کنید">برنامه مکمل را نصب کنید</h3>
+<p data-i18n="اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.">اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.</p>
+<p  data-i18n="در نوار آدرس همان پوشه استخراج‌شده، powershell بنویسید و Enter بزنید. دستور زیر را کپی کنید و در PowerShell اجرا کنید.">در نوار آدرس همان پوشه استخراج‌شده، powershell بنویسید و Enter بزنید. دستور زیر را کپی کنید و در PowerShell اجرا کنید.</p>
+<div class="guide-command">
+<div>
+<span>PowerShell</span>
+<button type="button" class="text-button" data-guide-copy="guide-store-windows-install">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-store-windows-install" data-guide-command="install" data-method="store" data-os="windows">
+</code>
+</pre>
+</div>
+<p  data-i18n="دستور، شناسه همین افزونه را ثبت می‌کند. دسترسی Administrator لازم نیست. در نصب تازه Xray 25.8.3 دانلود می‌شود؛ هسته نصب‌شده قبلی در نصب مجدد عادی حفظ می‌شود.">دستور، شناسه همین افزونه را ثبت می‌کند. دسترسی Administrator لازم نیست. در نصب تازه Xray 25.8.3 دانلود می‌شود؛ هسته نصب‌شده قبلی در نصب مجدد عادی حفظ می‌شود.</p>
+</li>
+<li>
+<h3  data-i18n="Chrome را دوباره باز کنید">Chrome را دوباره باز کنید</h3>
+<p  data-i18n="منتظر پیام موفقیت نصب بمانید. Chrome را کامل ببندید و دوباره باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.">منتظر پیام موفقیت نصب بمانید. Chrome را کامل ببندید و دوباره باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.</p>
+</li>
+<li>
+<h3  data-i18n="کانفیگ اضافه کنید و متصل شوید">کانفیگ اضافه کنید و متصل شوید</h3>
+<p  data-i18n="در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.">در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.</p>
+<button class="guide-link" type="button" data-open-import="manualLinks">
+<span  data-i18n="رفتن به افزودن کانفیگ">رفتن به افزودن کانفیگ</span>
+</button>
+</li>
+</ol>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="دانلود ناموفق یا نصب با فایل محلی">دانلود ناموفق یا نصب با فایل محلی</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.">اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.</p>
+<a class="guide-link" href="https://github.com/XTLS/Xray-core/releases/tag/v25.8.3" target="_blank" rel="noopener noreferrer" data-i18n="دریافت Xray 25.8.3">دریافت Xray 25.8.3</a>
+<div class="guide-command">
+<div>
+<span>PowerShell</span>
+<button type="button" class="text-button" data-guide-copy="guide-store-windows-local">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-store-windows-local" data-guide-command="local" data-method="store" data-os="windows">
+</code>
+</pre>
+</div>
+</div>
+</details>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="حذف برنامه مکمل">حذف برنامه مکمل</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.">ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.</p>
+<div class="guide-command">
+<div>
+<span>PowerShell</span>
+<button type="button" class="text-button" data-guide-copy="guide-store-windows-remove">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-store-windows-remove" data-guide-command="remove" data-method="store" data-os="windows">
+</code>
+</pre>
+</div>
+</div>
+</details>
+</div>
+<div class="guide-platform-panel section-card" id="guide-store-macos" role="region" aria-labelledby="guide-store-macos-button" hidden>
+<p class="guide-requirements" data-i18n="macOS 12 به بالا · Chrome 116 به بالا · Intel و Apple Silicon">macOS 12 به بالا · Chrome 116 به بالا · Intel و Apple Silicon</p>
+<ol class="guide-steps">
+<li>
+<h3  data-i18n="افزونه را از استور نصب کنید">افزونه را از استور نصب کنید</h3>
+<p  data-i18n="در صفحه افزونه روی Add to Chrome و سپس Add extension بزنید. افزونه را باز کنید و به همین بخش آموزش برگردید. اگر نصب کرده‌اید، به مرحله بعد بروید.">در صفحه افزونه روی Add to Chrome و سپس Add extension بزنید. افزونه را باز کنید و به همین بخش آموزش برگردید. اگر نصب کرده‌اید، به مرحله بعد بروید.</p>
+<a class="guide-link" href="https://chromewebstore.google.com/detail/lifddnekhjaikimaajejkdbhfnifpcoo" target="_blank" rel="noopener noreferrer" data-i18n="بازکردن صفحه کروم استور">بازکردن صفحه کروم استور</a>
+</li>
+<li>
+<h3  data-i18n="برنامه مکمل را دانلود و استخراج کنید">برنامه مکمل را دانلود و استخراج کنید</h3>
+<a class="guide-link" href="https://github.com/pesarakloo/xray-for-chrome/raw/main/downloads/xray-companion-macos.zip" target="_blank" rel="noopener noreferrer" data-i18n="دانلود برنامه مکمل مک">دانلود برنامه مکمل مک</a>
+<p  data-i18n="روی فایل ZIP دوبار کلیک کنید. پوشه‌ای را باز کنید که install.command داخل آن است.">روی فایل ZIP دوبار کلیک کنید. پوشه‌ای را باز کنید که install.command داخل آن است.</p>
+</li>
+<li>
+<h3  data-i18n="برنامه مکمل را نصب کنید">برنامه مکمل را نصب کنید</h3>
+<p data-i18n="اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.">اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.</p>
+<p  data-i18n="Terminal را باز کنید. عبارت cd و یک فاصله بنویسید، پوشه استخراج‌شده برنامه مکمل را داخل Terminal بکشید و Enter بزنید. سپس دستور زیر را اجرا کنید.">Terminal را باز کنید. عبارت cd و یک فاصله بنویسید، پوشه استخراج‌شده برنامه مکمل را داخل Terminal بکشید و Enter بزنید. سپس دستور زیر را اجرا کنید.</p>
+<div class="guide-command">
+<div>
+<span>Terminal</span>
+<button type="button" class="text-button" data-guide-copy="guide-store-macos-install">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-store-macos-install" data-guide-command="install" data-method="store" data-os="macos">
+</code>
+</pre>
+</div>
+<p  data-i18n="دستور، شناسه همین افزونه را ثبت و Xray 25.8.3 مناسب Intel یا Apple Silicon را دانلود می‌کند. به sudo یا Xcode نیاز نیست.">دستور، شناسه همین افزونه را ثبت و Xray 25.8.3 مناسب Intel یا Apple Silicon را دانلود می‌کند. به sudo یا Xcode نیاز نیست.</p>
+</li>
+<li>
+<h3  data-i18n="Chrome را دوباره باز کنید">Chrome را دوباره باز کنید</h3>
+<p  data-i18n="منتظر پیام موفقیت نصب بمانید. با ⌘Q از Chrome خارج شوید و دوباره آن را باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.">منتظر پیام موفقیت نصب بمانید. با ⌘Q از Chrome خارج شوید و دوباره آن را باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.</p>
+</li>
+<li>
+<h3  data-i18n="کانفیگ اضافه کنید و متصل شوید">کانفیگ اضافه کنید و متصل شوید</h3>
+<p  data-i18n="در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.">در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.</p>
+<button class="guide-link" type="button" data-open-import="manualLinks">
+<span  data-i18n="رفتن به افزودن کانفیگ">رفتن به افزودن کانفیگ</span>
+</button>
+</li>
+</ol>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="دانلود ناموفق یا نصب با فایل محلی">دانلود ناموفق یا نصب با فایل محلی</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.">اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.</p>
+<a class="guide-link" href="https://github.com/XTLS/Xray-core/releases/tag/v25.8.3" target="_blank" rel="noopener noreferrer" data-i18n="دریافت Xray 25.8.3">دریافت Xray 25.8.3</a>
+<div class="guide-command">
+<div>
+<span>Terminal</span>
+<button type="button" class="text-button" data-guide-copy="guide-store-macos-local">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-store-macos-local" data-guide-command="local" data-method="store" data-os="macos">
+</code>
+</pre>
+</div>
+</div>
+</details>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="حذف برنامه مکمل">حذف برنامه مکمل</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.">ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.</p>
+<div class="guide-command">
+<div>
+<span>Terminal</span>
+<button type="button" class="text-button" data-guide-copy="guide-store-macos-remove">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-store-macos-remove" data-guide-command="remove" data-method="store" data-os="macos">
+</code>
+</pre>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div id="guide-method-github" class="guide-method-panel" role="region" aria-labelledby="guide-github-button" hidden>
+<h2 class="guide-choice-title" data-i18n="سیستم‌عامل شما">سیستم‌عامل شما</h2>
+<div class="guide-platforms" role="group">
+<button type="button" data-guide-platform="windows" id="guide-github-windows-button" aria-controls="guide-github-windows" aria-pressed="true">
+<span aria-hidden="true" class="ui-icon icon-brand-windows">
+</span>
+<span  data-i18n="ویندوز">ویندوز</span>
+</button>
+<button type="button" data-guide-platform="macos" id="guide-github-macos-button" aria-controls="guide-github-macos" aria-pressed="false">
+<span aria-hidden="true" class="ui-icon icon-brand-apple">
+</span>
+<span  data-i18n="مک">مک</span>
+</button>
+</div>
+<div class="guide-platform-panel section-card" id="guide-github-windows" role="region" aria-labelledby="guide-github-windows-button">
+<p class="guide-requirements" data-i18n="Windows 10 یا 11 · Chrome 116 به بالا · PowerShell 5.1 و ‎.NET Framework 4.8">Windows 10 یا 11 · Chrome 116 به بالا · PowerShell 5.1 و ‎.NET Framework 4.8</p>
+<ol class="guide-steps">
+<li>
+<h3  data-i18n="بسته کامل پروژه را دریافت کنید">بسته کامل پروژه را دریافت کنید</h3>
+<p  data-i18n="بسته کامل را از GitHub دریافت و استخراج کنید. پوشه اصلی شامل extension، native-hosts و install-windows.cmd است؛ این پوشه را نگه دارید.">بسته کامل را از GitHub دریافت و استخراج کنید. پوشه اصلی شامل extension، native-hosts و install-windows.cmd است؛ این پوشه را نگه دارید.</p>
+<a class="guide-link" href="https://github.com/pesarakloo/xray-for-chrome/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer" data-i18n="دریافت بسته کامل از گیت‌هاب">دریافت بسته کامل از گیت‌هاب</a>
+</li>
+<li>
+<h3  data-i18n="افزونه را به Chrome اضافه کنید">افزونه را به Chrome اضافه کنید</h3>
+<p  data-i18n="در نوار آدرس Chrome، chrome://extensions را وارد کنید. Developer mode را روشن کنید، Load unpacked را بزنید و فقط پوشه extension را انتخاب کنید. افزونه تازه بارگذاری‌شده را باز کنید و دستور بعدی را از همین راهنمای آن کپی کنید.">در نوار آدرس Chrome، chrome://extensions را وارد کنید. Developer mode را روشن کنید، Load unpacked را بزنید و فقط پوشه extension را انتخاب کنید. افزونه تازه بارگذاری‌شده را باز کنید و دستور بعدی را از همین راهنمای آن کپی کنید.</p>
+</li>
+<li>
+<h3  data-i18n="برنامه مکمل را نصب کنید">برنامه مکمل را نصب کنید</h3>
+<p data-i18n="اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.">اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.</p>
+<p  data-i18n="پوشه اصلی پروژه را باز کنید؛ همان پوشه‌ای که install-windows.cmd دارد. در نوار آدرس پوشه powershell بنویسید و Enter بزنید، سپس دستور زیر را اجرا کنید.">پوشه اصلی پروژه را باز کنید؛ همان پوشه‌ای که install-windows.cmd دارد. در نوار آدرس پوشه powershell بنویسید و Enter بزنید، سپس دستور زیر را اجرا کنید.</p>
+<div class="guide-command">
+<div>
+<span>PowerShell</span>
+<button type="button" class="text-button" data-guide-copy="guide-github-windows-install">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-github-windows-install" data-guide-command="install" data-method="github" data-os="windows">
+</code>
+</pre>
+</div>
+<p  data-i18n="دستور، شناسه همین افزونه را ثبت می‌کند. دسترسی Administrator لازم نیست. در نصب تازه Xray 25.8.3 دانلود می‌شود؛ هسته نصب‌شده قبلی در نصب مجدد عادی حفظ می‌شود.">دستور، شناسه همین افزونه را ثبت می‌کند. دسترسی Administrator لازم نیست. در نصب تازه Xray 25.8.3 دانلود می‌شود؛ هسته نصب‌شده قبلی در نصب مجدد عادی حفظ می‌شود.</p>
+</li>
+<li>
+<h3  data-i18n="Chrome را دوباره باز کنید">Chrome را دوباره باز کنید</h3>
+<p  data-i18n="منتظر پیام موفقیت نصب بمانید. Chrome را کامل ببندید و دوباره باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.">منتظر پیام موفقیت نصب بمانید. Chrome را کامل ببندید و دوباره باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.</p>
+</li>
+<li>
+<h3  data-i18n="کانفیگ اضافه کنید و متصل شوید">کانفیگ اضافه کنید و متصل شوید</h3>
+<p  data-i18n="در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.">در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.</p>
+<button class="guide-link" type="button" data-open-import="manualLinks">
+<span  data-i18n="رفتن به افزودن کانفیگ">رفتن به افزودن کانفیگ</span>
+</button>
+</li>
+</ol>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="دانلود ناموفق یا نصب با فایل محلی">دانلود ناموفق یا نصب با فایل محلی</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.">اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.</p>
+<a class="guide-link" href="https://github.com/XTLS/Xray-core/releases/tag/v25.8.3" target="_blank" rel="noopener noreferrer" data-i18n="دریافت Xray 25.8.3">دریافت Xray 25.8.3</a>
+<div class="guide-command">
+<div>
+<span>PowerShell</span>
+<button type="button" class="text-button" data-guide-copy="guide-github-windows-local">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-github-windows-local" data-guide-command="local" data-method="github" data-os="windows">
+</code>
+</pre>
+</div>
+</div>
+</details>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="حذف برنامه مکمل">حذف برنامه مکمل</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.">ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.</p>
+<div class="guide-command">
+<div>
+<span>PowerShell</span>
+<button type="button" class="text-button" data-guide-copy="guide-github-windows-remove">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-github-windows-remove" data-guide-command="remove" data-method="github" data-os="windows">
+</code>
+</pre>
+</div>
+</div>
+</details>
+</div>
+<div class="guide-platform-panel section-card" id="guide-github-macos" role="region" aria-labelledby="guide-github-macos-button" hidden>
+<p class="guide-requirements" data-i18n="macOS 12 به بالا · Chrome 116 به بالا · Intel و Apple Silicon">macOS 12 به بالا · Chrome 116 به بالا · Intel و Apple Silicon</p>
+<ol class="guide-steps">
+<li>
+<h3  data-i18n="بسته کامل پروژه را دریافت کنید">بسته کامل پروژه را دریافت کنید</h3>
+<p  data-i18n="بسته کامل را از GitHub دریافت و استخراج کنید. پوشه اصلی شامل extension، native-hosts و install-windows.cmd است؛ این پوشه را نگه دارید.">بسته کامل را از GitHub دریافت و استخراج کنید. پوشه اصلی شامل extension، native-hosts و install-windows.cmd است؛ این پوشه را نگه دارید.</p>
+<a class="guide-link" href="https://github.com/pesarakloo/xray-for-chrome/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer" data-i18n="دریافت بسته کامل از گیت‌هاب">دریافت بسته کامل از گیت‌هاب</a>
+</li>
+<li>
+<h3  data-i18n="افزونه را به Chrome اضافه کنید">افزونه را به Chrome اضافه کنید</h3>
+<p  data-i18n="در نوار آدرس Chrome، chrome://extensions را وارد کنید. Developer mode را روشن کنید، Load unpacked را بزنید و فقط پوشه extension را انتخاب کنید. افزونه تازه بارگذاری‌شده را باز کنید و دستور بعدی را از همین راهنمای آن کپی کنید.">در نوار آدرس Chrome، chrome://extensions را وارد کنید. Developer mode را روشن کنید، Load unpacked را بزنید و فقط پوشه extension را انتخاب کنید. افزونه تازه بارگذاری‌شده را باز کنید و دستور بعدی را از همین راهنمای آن کپی کنید.</p>
+</li>
+<li>
+<h3  data-i18n="برنامه مکمل را نصب کنید">برنامه مکمل را نصب کنید</h3>
+<p data-i18n="اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.">اگر هم‌اکنون متصل هستید، ابتدا در تب اتصال، قطع اتصال را بزنید.</p>
+<p  data-i18n="Terminal را باز کنید. عبارت cd و یک فاصله بنویسید، پوشه اصلی پروژه (دارای extension و native-hosts) را داخل Terminal بکشید و Enter بزنید. سپس دستور زیر را اجرا کنید.">Terminal را باز کنید. عبارت cd و یک فاصله بنویسید، پوشه اصلی پروژه (دارای extension و native-hosts) را داخل Terminal بکشید و Enter بزنید. سپس دستور زیر را اجرا کنید.</p>
+<div class="guide-command">
+<div>
+<span>Terminal</span>
+<button type="button" class="text-button" data-guide-copy="guide-github-macos-install">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-github-macos-install" data-guide-command="install" data-method="github" data-os="macos">
+</code>
+</pre>
+</div>
+<p  data-i18n="دستور، شناسه همین افزونه را ثبت و Xray 25.8.3 مناسب Intel یا Apple Silicon را دانلود می‌کند. به sudo یا Xcode نیاز نیست.">دستور، شناسه همین افزونه را ثبت و Xray 25.8.3 مناسب Intel یا Apple Silicon را دانلود می‌کند. به sudo یا Xcode نیاز نیست.</p>
+</li>
+<li>
+<h3  data-i18n="Chrome را دوباره باز کنید">Chrome را دوباره باز کنید</h3>
+<p  data-i18n="منتظر پیام موفقیت نصب بمانید. با ⌘Q از Chrome خارج شوید و دوباره آن را باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.">منتظر پیام موفقیت نصب بمانید. با ⌘Q از Chrome خارج شوید و دوباره آن را باز کنید. در تب اتصال باید «Xray آماده» یا نسخه هسته را ببینید.</p>
+</li>
+<li>
+<h3  data-i18n="کانفیگ اضافه کنید و متصل شوید">کانفیگ اضافه کنید و متصل شوید</h3>
+<p  data-i18n="در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.">در تب افزودن، لینک کانفیگ را وارد کنید؛ یا لینک اشتراک HTTPS را ثبت و دسترسی همان دامنه را تأیید کنید. سپس در تب اتصال یک کانفیگ انتخاب کنید و اتصال را بزنید.</p>
+<button class="guide-link" type="button" data-open-import="manualLinks">
+<span  data-i18n="رفتن به افزودن کانفیگ">رفتن به افزودن کانفیگ</span>
+</button>
+</li>
+</ol>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="دانلود ناموفق یا نصب با فایل محلی">دانلود ناموفق یا نصب با فایل محلی</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.">اگر دانلود خودکار انجام نشد، فایل رسمی Xray 25.8.3 مناسب سیستم خود را دانلود و استخراج کنید. در دستور زیر مسیر نمونه را با مسیر واقعی فایل جایگزین کنید و از همان پوشه مرحله نصب اجرا کنید.</p>
+<a class="guide-link" href="https://github.com/XTLS/Xray-core/releases/tag/v25.8.3" target="_blank" rel="noopener noreferrer" data-i18n="دریافت Xray 25.8.3">دریافت Xray 25.8.3</a>
+<div class="guide-command">
+<div>
+<span>Terminal</span>
+<button type="button" class="text-button" data-guide-copy="guide-github-macos-local">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-github-macos-local" data-guide-command="local" data-method="github" data-os="macos">
+</code>
+</pre>
+</div>
+</div>
+</details>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="حذف برنامه مکمل">حذف برنامه مکمل</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.">ابتدا اتصال را قطع کنید. دستور زیر را از همان پوشه مرحله نصب اجرا کنید؛ برنامه مکمل، هسته و گزارش‌های محلی حذف می‌شوند. حذف خود افزونه از chrome://extensions جداگانه است.</p>
+<div class="guide-command">
+<div>
+<span>Terminal</span>
+<button type="button" class="text-button" data-guide-copy="guide-github-macos-remove">
+<span  data-i18n="کپی دستور">کپی دستور</span>
+</button>
+</div>
+<pre>
+<code dir="ltr" id="guide-github-macos-remove" data-guide-command="remove" data-method="github" data-os="macos">
+</code>
+</pre>
+</div>
+</div>
+</details>
+</div>
+</div>
+<p id="guide-copy-status" class="guide-copy-status" role="status" aria-live="polite">
+</p>
+<details class="guide-details">
+<summary>
+<span aria-hidden="true" class="ui-icon icon-info-circle">
+</span>
+<span  data-i18n="رفع خطاهای رایج">رفع خطاهای رایج</span>
+<span aria-hidden="true" class="ui-icon icon-chevron-down">
+</span>
+</summary>
+<div class="guide-detail-body">
+<p  data-i18n="برنامه همراه در دسترس نیست: دستور نصب را از همین افزونه کپی و دوباره اجرا کنید تا شناسه درست ثبت شود. سپس Chrome را کامل ببندید و باز کنید.">برنامه همراه در دسترس نیست: دستور نصب را از همین افزونه کپی و دوباره اجرا کنید تا شناسه درست ثبت شود. سپس Chrome را کامل ببندید و باز کنید.</p>
+<p  data-i18n="فایل نصب پیدا نمی‌شود: ZIP را کامل استخراج کنید و فرمان را از پوشه مشخص‌شده در مرحله نصب اجرا کنید. مسیر دستورهای استور و گیت‌هاب در مک متفاوت است.">فایل نصب پیدا نمی‌شود: ZIP را کامل استخراج کنید و فرمان را از پوشه مشخص‌شده در مرحله نصب اجرا کنید. مسیر دستورهای استور و گیت‌هاب در مک متفاوت است.</p>
+<p  data-i18n="خطای اتصال یا پینگ: کانفیگ، اینترنت و ساعت سیستم را بررسی کنید. جزئیات در «گزارش خطا» در تب اتصال است. اگر پراکسی در اختیار افزونه دیگری است، آن افزونه را غیرفعال کنید.">خطای اتصال یا پینگ: کانفیگ، اینترنت و ساعت سیستم را بررسی کنید. جزئیات در «گزارش خطا» در تب اتصال است. اگر پراکسی در اختیار افزونه دیگری است، آن افزونه را غیرفعال کنید.</p>
+<span  data-i18n="شناسه این افزونه">شناسه این افزونه</span>
+<code dir="ltr" id="extensionId" class="guide-extension-id">
+</code>
+</div>
+</details>
+<p class="guide-note" data-i18n="این افزونه فقط اتصال پروفایل عادی Chrome را مدیریت می‌کند. سرور یا اشتراک همراه آن ارائه نمی‌شود.">این افزونه فقط اتصال پروفایل عادی Chrome را مدیریت می‌کند. سرور یا اشتراک همراه آن ارائه نمی‌شود.</p>
+</section>
+<section class="tab-panel" id="tab-about">
+<div class="section-card about-card">
+<div class="about-hero">
+<span aria-hidden="true" class="brand-mark">
+<img alt="" height="44" src="../assets/ui/brand.webp" width="44"/>
+</span>
+<div>
+<h2 class="about-title">
+<span data-i18n="درباره ما">درباره ما</span>
+</h2>
+<p>Xray for Chrome · <span dir="ltr" id="appVersion">
+</span>
+</p>
+</div>
+</div>
+<p class="about-description">
+<span data-i18n="مدیریت کانفیگ‌ها و سابسکریپشن‌های Xray برای اتصال مرورگر کروم در ویندوز و مک.">مدیریت کانفیگ‌ها و سابسکریپشن‌های Xray برای اتصال مرورگر کروم در ویندوز و مک.</span>
+</p>
+<a class="about-link" href="https://anisoft.ir" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-world">
+</span>
+</span>
+<span class="about-link-text">
+<strong>
+<span data-i18n="وب‌سایت آنی‌سافت">وب‌سایت آنی‌سافت</span>
+</strong>
+<span dir="ltr">anisoft.ir</span>
+</span>
+<span aria-hidden="true" class="link-arrow">
+<span aria-hidden="true" class="ui-icon icon-arrow-up-right">
+</span>
+</span>
+</a>
+<a class="about-link" href="https://github.com/pesarakloo" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-brand-github">
+</span>
+</span>
+<span class="about-link-text">
+<strong>
+<span data-i18n="گیت‌هاب">گیت‌هاب</span>
+</strong>
+<span dir="ltr">github.com/pesarakloo</span>
+</span>
+<span aria-hidden="true" class="link-arrow">
+<span aria-hidden="true" class="ui-icon icon-arrow-up-right">
+</span>
+</span>
+</a>
+<a class="about-link" href="../privacy.html" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-shield-lock">
+</span>
+</span>
+<span class="about-link-text">
+<strong>
+<span data-i18n="حریم خصوصی">حریم خصوصی</span>
+</strong>
+<span dir="ltr">Privacy policy</span>
+</span>
+<span aria-hidden="true" class="link-arrow">
+<span aria-hidden="true" class="ui-icon icon-arrow-up-right">
+</span>
+</span>
+</a>
+<a class="about-link" href="https://t.me/xray_chrome" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="section-icon">
+<span aria-hidden="true" class="ui-icon icon-brand-telegram">
+</span>
+</span>
+<span class="about-link-text">
+<strong>
+<span data-i18n="کانال تلگرام">کانال تلگرام</span>
+</strong>
+<span dir="ltr">t.me/xray_chrome</span>
+</span>
+<span aria-hidden="true" class="link-arrow">
+<span aria-hidden="true" class="ui-icon icon-arrow-up-right">
+</span>
+</span>
+</a>
+</div>
+</section>
+<div aria-live="polite" class="toast" id="toast" role="status">
+</div>
+</main>
+<script src="popup.js" type="module">
+</script>
+<script src="guide.js" type="module">
+</script>
+</body>
+</html>
+

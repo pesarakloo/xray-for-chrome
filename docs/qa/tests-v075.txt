@@ -1,0 +1,169 @@
+FILE: tests/config.test.mjs
+✔ builds VLESS vnext/users outbound (10.646863ms)
+✔ builds REALITY settings with the current password field (0.391617ms)
+✔ builds VMess and Shadowsocks nested settings and retains existing Trojan settings (4.415795ms)
+✔ preserves advanced XHTTP and TLS parameters (0.961998ms)
+✔ converts mKCP legacy seed and header into FinalMask (0.559317ms)
+✔ builds RAW HTTP camouflage for compatible Shadowsocks links (0.46021ms)
+✔ binds the local SOCKS inbound only to loopback (0.493532ms)
+✔ refuses privileged and invalid local ports (0.677243ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27.769961
+
+FILE: tests/languages.test.mjs
+✔ first-run English default, Persian toggle, interpolation and error details (5.633587ms)
+✔ every static translatable label and attribute has an English message (6.382435ms)
+✔ subscription grants cover the requested HTTPS host without credentials (2.184997ms)
+✔ release manifest keeps optional site access, local code and no Incognito (0.791137ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19.860468
+
+FILE: tests/latency.test.mjs
+✔ probe config preserves transport/auth and has no direct fallback or active inbound (6.735476ms)
+✔ all profiles get independent saved results; concurrency is bounded and active connection untouched (9.720853ms)
+✔ timeout/error results remain distinct and never become a zero-ms success (0.913825ms)
+✔ fresh results skip auto-tests, manual refresh reruns, and changed configs invalidate cache (2.089494ms)
+✔ old companion requires upgrade; no network probes are attempted (0.716118ms)
+✔ deleting/changing profiles during a probe cannot resurrect or attach stale results (3.602513ms)
+✔ cancel finishes in-flight probes, clears the queue and permits a new run (2.57146ms)
+✔ overlapping start requests do not duplicate a batch (0.846694ms)
+✔ companion/invalid-response failures stop the queue instead of inventing per-server failures (2.210007ms)
+✔ latency storage preserves profile/connection data and discards mismatched cache (1.601227ms)
+✔ TCP cache cannot suppress or replace a new HTTPS test (0.575401ms)
+✔ cancel during handshake does not start any Xray probes (1.393587ms)
+✔ same endpoint with different credentials gets independent HTTPS probes (0.94541ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41.174164
+
+FILE: tests/mac-targets.test.mjs
+✔ macOS validator accepts safe IPv4, IPv6 and domain targets (2.810103ms)
+✔ macOS validator rejects shell syntax, TSV injection and invalid ports (8.305251ms)
+✔ macOS validator rejects duplicate ids, unsafe ids and invalid deadlines (3.539825ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21.799697
+
+FILE: tests/native-batch.test.mjs
+✔ batch sends once, streams results, then disconnects on completion (1.87827ms)
+✔ abort closes the native port immediately and ignores late results (0.82844ms)
+✔ an already cancelled test does not open a native host (0.223461ms)
+✔ native disconnection before done reports an error (1.202631ms)
+✔ malformed and rejected native responses close the batch (0.517757ms)
+✔ result validation failure closes the port and rejects the batch (0.233462ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.658525
+
+FILE: tests/parser.test.mjs
+✔ parses VLESS REALITY links (6.028874ms)
+✔ parses VMess AEAD links (0.698597ms)
+✔ maps VMess gRPC legacy type and path fields (1.609814ms)
+✔ rejects obsolete VMess alterId (0.700439ms)
+✔ parses SIP002 and legacy Shadowsocks links (0.783334ms)
+✔ converts the 3x-ui compatible Shadowsocks HTTP obfs plugin (0.296337ms)
+✔ parses advanced XHTTP, TLS, and FinalMask parameters (1.374086ms)
+✔ Trojan defaults to TLS (0.432778ms)
+✔ decodes base64 subscriptions and reports bad rows (1.279058ms)
+✔ accepts literal escaped newlines in subscriptions (0.46299ms)
+✔ fingerprints equivalent profiles consistently (0.440369ms)
+✔ fingerprints include transport-security variables (0.635625ms)
+✔ rejects REALITY on transports unsupported by current Xray (0.361099ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22.882756
+
+FILE: tests/routing.test.mjs
+✔ direct-site input normalizes URLs, Unicode, case, ports, IPs and duplicates (3.328955ms)
+✔ unsafe rules are rejected atomically with a line number (2.833036ms)
+✔ proxy exceptions match the exact domain and subdomains without suffix lookalikes (0.390755ms)
+✔ worker saves offline, applies while connected, rolls back failures, serializes changes and restores saved rules (11.810402ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25.228698
+
+FILE: tests/setup-guide.test.mjs
+✔ all four setup routes use the right layout and the actual installed extension ID (1.431515ms)
+✔ Mac metadata resolves only 25.8.3 for both architectures and keeps empty-digest TSV fields (5.240345ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14.488804
+
+FILE: tests/structure.test.mjs
+✔ manifest references existing local files and a stable extension id (6.798043ms)
+✔ popup has no inline script or remote code (1.393652ms)
+✔ native hosts are separated and use the same host name (1.391048ms)
+✔ Windows PowerShell installers are safe for legacy code-page parsing (1.123829ms)
+✔ macOS installer supports Apple Silicon and Intel assets (1.133837ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18.168823
+
+FILE: tests/subscriptions.test.mjs
+✔ worker enforces host permission, HTTPS, bounded failures and no cookie forwarding (40.82067ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47.377382
+
+FILE: tests/tcp-latency.test.mjs
+✔ storage hides TCP and untyped cached results after restoring HTTPS (6.218136ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.246736
