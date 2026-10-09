@@ -2,7 +2,7 @@
 
 - Setup guide split into **Chrome Web Store** and **GitHub installation**, each with separate Windows and macOS steps and the correct command paths.
 - **Split tunneling** in its own top-menu tab: save up to 200 domains that should bypass this extension's proxy, including their subdomains.
-- macOS automatic Xray downloads pinned to **25.8.3** for Intel and Apple Silicon; rebuilt companion ZIPs.
+- macOS automatic Xray downloads pinned to **26.6.27** for Intel and Apple Silicon; rebuilt companion ZIPs.
 - Matching English and Persian instructions, updated privacy information and version labels.
 
 # 0.7.4
